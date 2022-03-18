@@ -44,3 +44,5 @@ Queremos que o jogador se sinta um herói, que pode ser o diferencial.
 
 
 Landing page: https://popm4ker.wixsite.com/projeto-klonus
+
+Protótipo: https://www.figma.com/file/QHnXlPZABRUXne8ulBFIau/Klonus?node-id=0%3A1
