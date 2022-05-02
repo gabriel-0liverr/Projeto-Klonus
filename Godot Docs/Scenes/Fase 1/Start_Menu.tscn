@@ -158,7 +158,6 @@ position = Vector2( 463, 385 )
 scale = Vector2( 0.4, 0.4 )
 normal = ExtResource( 1 )
 pressed = ExtResource( 4 )
-action = "\"ui_select\""
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5
@@ -169,5 +168,4 @@ autoplay = "Reveal"
 anims/RESET = SubResource( 2 )
 anims/Reveal = SubResource( 3 )
 
-[connection signal="timeout" from="Timer" to="." method="_on_TimerBlink_timeout"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

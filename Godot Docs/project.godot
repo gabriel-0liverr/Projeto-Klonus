@@ -12,8 +12,8 @@ config_version=4
 
 config/name="Klonus"
 run/main_scene="res://Scenes/Fase 1/Start_Menu.tscn"
-config/icon="res://icon.png"
-config/windows_native_icon="res://Icon.ico"
+config/icon="res://IconMin.png"
+config/windows_native_icon="res://IconMin.ico"
 
 [display]
 

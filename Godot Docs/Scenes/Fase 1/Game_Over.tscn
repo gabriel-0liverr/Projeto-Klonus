@@ -6,7 +6,7 @@
 [ext_resource path="res://Assets/Buttons/ReiniciarDark.png" type="Texture" id=4]
 [ext_resource path="res://Assets/Buttons/SairLight.png" type="Texture" id=5]
 [ext_resource path="res://Assets/Buttons/SairDark.png" type="Texture" id=6]
-[ext_resource path="res://Scripts/Fase 1/Start_Menu.gd" type="Script" id=7]
+[ext_resource path="res://Scripts/Fase 1/Game_Over.gd" type="Script" id=7]
 
 [sub_resource type="DynamicFont" id=1]
 size = 100
@@ -220,14 +220,12 @@ position = Vector2( 463, 350 )
 scale = Vector2( 0.6, 0.6 )
 normal = ExtResource( 3 )
 pressed = ExtResource( 4 )
-action = "\"ui_select\""
 
 [node name="Sair" type="TouchScreenButton" parent="Options"]
 position = Vector2( 553, 453 )
 scale = Vector2( 0.6, 0.6 )
 normal = ExtResource( 5 )
 pressed = ExtResource( 6 )
-action = "\"ui_cancel\""
 
 [node name="anim" type="AnimationPlayer" parent="Options"]
 root_node = NodePath("../..")
