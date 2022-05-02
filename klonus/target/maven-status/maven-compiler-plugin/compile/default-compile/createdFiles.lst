@@ -1,0 +1,8 @@
+ads\projetointegrador\klonus\action\UpdateRanking.class
+ads\projetointegrador\klonus\action\Ranking.class
+ads\projetointegrador\klonus\servlet\Controller.class
+ads\projetointegrador\klonus\action\Action.class
+ads\projetointegrador\klonus\teste\TesteConexao.class
+ads\projetointegrador\klonus\dao\PlayerDao.class
+ads\projetointegrador\klonus\modelo\Player.class
+ads\projetointegrador\klonus\dao\JPAUTIL.class
