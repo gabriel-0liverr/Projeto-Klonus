@@ -7,6 +7,12 @@ export(NodePath) var laseres
 var vel = 150
 onready var anim = $AnimationPlayer
 
+var escudo = 100
+
+onready var escudo_size = $Escudo/Sprite.material.get_shader_param("size")
+
+onready var shape_size = $Area/Shape.shape.radius
+
 func _ready():
 	if laseres:
 		laseres = get_node(laseres)
@@ -21,7 +27,7 @@ func _process(delta):
 	movement(dirX, dirY, delta)
 	
 	if Input.is_action_just_pressed("ui_accept"):
-		if get_tree().get_nodes_in_group("laseres").size() < 5:
+		if get_tree().get_nodes_in_group("laseres").size() < 8:
 			var laser = PRE_LASER.instance()
 			laseres.add_child(laser)
 			laser.global_position = $Blaster.global_position
@@ -46,3 +52,18 @@ func movement(dirX, dirY, delta):
 	
 	global_position.x = clamp(global_position.x, 180, 1100)
 	global_position.y = clamp(global_position.y, 33, 699)
+
+
+func _on_Area_area_entered(area):
+	if area.get_parent().has_method("destroi"):
+		area.get_parent().destroi()
+	get_tree().call_group("camera", "treme", 3)
+	escudo -= 5
+	$Area/Shape.shape.radius = shape_size * escudo / 100
+	$Escudo/Sprite.material.set_shader_param("size", escudo_size * escudo / 100)
+
+
+func _on_Dead_area_area_entered(area):
+	visible = false
+	set_process(false)
+	get_tree().change_scene("res://Scenes/Fase 1/Game_Over.tscn")

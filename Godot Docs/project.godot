@@ -11,7 +11,9 @@ config_version=4
 [application]
 
 config/name="Klonus"
+run/main_scene="res://Scenes/Fase 1/Start_Menu.tscn"
 config/icon="res://icon.png"
+config/windows_native_icon="res://Icon.ico"
 
 [display]
 
@@ -21,6 +23,10 @@ window/size/test_width=800
 window/size/test_height=450
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"
+
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
 
 [layer_names]
 
