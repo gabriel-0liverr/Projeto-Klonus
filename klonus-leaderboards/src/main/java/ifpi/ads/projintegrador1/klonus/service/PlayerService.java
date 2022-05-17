@@ -9,6 +9,7 @@ import org.springframework.web.server.ResponseStatusException;
 import ifpi.ads.projintegrador1.klonus.model.Player;
 import ifpi.ads.projintegrador1.klonus.repository.PlayerRepository;
 import ifpi.ads.projintegrador1.klonus.request.PlayerPostResponseBody;
+import ifpi.ads.projintegrador1.klonus.request.PlayerPutResponseBody;
 
 @Service
 public class PlayerService {
@@ -35,6 +36,18 @@ public class PlayerService {
 
 	public void delete(Long id) {
 		playerRepository.delete(findById(id));
+	}
+	
+	public void update(PlayerPutResponseBody playerPutResponseBody) {
+		Player playerFounded = findById(playerPutResponseBody.getId());
+		Player player = 
+				new Player(
+					playerFounded.getId(), 
+					playerPutResponseBody.getUsername(), 
+					playerPutResponseBody.getScore()
+				);
+		
+		playerRepository.save(player);
 	}
 
 }

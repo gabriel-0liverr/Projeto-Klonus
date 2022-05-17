@@ -1,0 +1,8 @@
+h1, li, ul, p, span {
+    margin: 0px;
+    padding: 0px;
+}
+
+li{
+    list-style: none;
+}
