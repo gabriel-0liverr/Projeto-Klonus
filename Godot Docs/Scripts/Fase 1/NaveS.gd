@@ -18,7 +18,7 @@ func _on_Spawn_Timer_timeout():
 
 
 func restartTimer():
-	$Spawn_Timer.wait_time = rand_range(4, 9)
+	$Spawn_Timer.wait_time = rand_range(2, 12)
 	$Spawn_Timer.start()
 
 func on_nave_destroied(nav):

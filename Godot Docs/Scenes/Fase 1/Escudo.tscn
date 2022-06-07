@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[sub_resource type="Shader" id=1]
+[sub_resource type="Shader" id=5]
 code = "shader_type canvas_item;
 
 render_mode blend_add;
@@ -39,14 +39,14 @@ void fragment(){
 }"
 
 [sub_resource type="ShaderMaterial" id=2]
-shader = SubResource( 1 )
+shader = SubResource( 5 )
 shader_param/pixel_size = 0.015
 shader_param/intensity = 1.3
 shader_param/layers = 5.0
 shader_param/speed = 0.1
 shader_param/size = 0.38
 
-[sub_resource type="OpenSimplexNoise" id=3]
+[sub_resource type="OpenSimplexNoise" id=6]
 period = 9.0
 persistence = 0.659
 lacunarity = 1.8
@@ -55,7 +55,7 @@ lacunarity = 1.8
 width = 80
 height = 80
 seamless = true
-noise = SubResource( 3 )
+noise = SubResource( 6 )
 
 [node name="Escudo" type="Node2D"]
 

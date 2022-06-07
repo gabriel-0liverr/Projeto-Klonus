@@ -1,6 +1,7 @@
 extends Node2D
 
 const PRE_LASER = preload("res://Scenes/Fase 1/Laser.tscn")
+const PRE_EXPLOSION = preload("res://Scenes/Fase 1/Explosion.tscn")
 
 export(NodePath) var laseres
 
@@ -8,6 +9,7 @@ var vel = 150
 onready var anim = $AnimationPlayer
 
 var escudo = 100
+var tempo = 0
 
 onready var escudo_size = $Escudo/Sprite.material.get_shader_param("size")
 
@@ -26,11 +28,15 @@ func _process(delta):
 
 	movement(dirX, dirY, delta)
 	
-	if Input.is_action_just_pressed("ui_accept"):
-		if get_tree().get_nodes_in_group("laseres").size() < 8:
-			var laser = PRE_LASER.instance()
-			laseres.add_child(laser)
-			laser.global_position = $Blaster.global_position
+	if Input.is_action_pressed("ui_accept"):
+		if tempo == 0:
+			if get_tree().get_nodes_in_group("laseres").size() < 3:
+				var laser = PRE_LASER.instance()
+				laseres.add_child(laser)
+				laser.global_position = $Blaster.global_position
+				
+				tempo = 1
+				$TimerTiro.start()
 	
 	pass
 
@@ -45,6 +51,22 @@ func movement(dirX, dirY, delta):
 	elif Input.is_action_pressed("ui_up"):
 		dirY += -1
 		anim.play("Up")
+	elif Input.is_action_pressed("ui_up_left"):
+		dirY += -1
+		dirX += -1
+		anim.play("Up")
+	elif Input.is_action_pressed("ui_up_right"):
+		dirY += -1
+		dirX += 1
+		anim.play("Up")
+	elif Input.is_action_pressed("ui_down_left"):
+		dirY += 1
+		dirX += -1
+		anim.play("Down")
+	elif Input.is_action_pressed("ui_down_right"):
+		dirY += 1
+		dirX += 1
+		anim.play("Down")
 	else:
 		anim.play("Idle")
 		
@@ -57,13 +79,25 @@ func movement(dirX, dirY, delta):
 func _on_Area_area_entered(area):
 	if area.get_parent().has_method("destroi"):
 		area.get_parent().destroi()
-	get_tree().call_group("camera", "treme", 3)
-	escudo -= 5
-	$Area/Shape.shape.radius = shape_size * escudo / 100
-	$Escudo/Sprite.material.set_shader_param("size", escudo_size * escudo / 100)
+	
+	if area.collision_layer == 4:
+		get_tree().call_group("camera", "treme", 3)
+		escudo -= 10
+		$Area/Shape.shape.radius = shape_size * escudo / 100
+		$Escudo/Sprite.material.set_shader_param("size", escudo_size * escudo / 100)
 
 
 func _on_Dead_area_area_entered(area):
 	visible = false
 	set_process(false)
+	var e = PRE_EXPLOSION.instance()
+	add_child(e)
+	e.global_position = global_position
+	$Timer.start()
+
+func _on_Timer_timeout():
 	get_tree().change_scene("res://Scenes/Fase 1/Game_Over.tscn")
+
+
+func _on_TimerTiro_timeout():
+	tempo = 0

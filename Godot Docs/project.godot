@@ -15,6 +15,10 @@ run/main_scene="res://Scenes/Fase 1/Start_Menu.tscn"
 config/icon="res://IconMin.png"
 config/windows_native_icon="res://IconMin.ico"
 
+[autoload]
+
+Score="*res://Scripts/Fase 1/Score.gd"
+
 [display]
 
 window/size/width=1280
@@ -23,6 +27,25 @@ window/size/test_width=800
 window/size/test_height=450
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"
+
+[input]
+
+ui_up_right={
+"deadzone": 0.5,
+"events": [  ]
+}
+ui_up_left={
+"deadzone": 0.5,
+"events": [  ]
+}
+ui_down_right={
+"deadzone": 0.5,
+"events": [  ]
+}
+ui_down_left={
+"deadzone": 0.5,
+"events": [  ]
+}
 
 [input_devices]
 
@@ -33,6 +56,7 @@ pointing/emulate_touch_from_mouse=true
 2d_physics/layer_1="Player"
 2d_physics/layer_2="Laser"
 2d_physics/layer_3="Asteroide"
+2d_physics/layer_4="Cristal"
 
 [physics]
 

@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/Fase 1/Laser.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Fase 1/shoot/Shoot.png" type="Texture" id=2]
+[ext_resource path="res://Sound FX/shot 2.wav" type="AudioStream" id=3]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Idle"
@@ -64,6 +65,11 @@ collision_mask = 4
 [node name="CollisionShape" type="CollisionShape2D" parent="Area"]
 rotation = 1.5708
 shape = SubResource( 3 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = -5.0
+autoplay = true
 
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
 [connection signal="area_entered" from="Area" to="." method="_on_Area_area_entered"]
