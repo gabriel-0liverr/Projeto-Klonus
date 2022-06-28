@@ -50,7 +50,7 @@ func _process(delta):
 
 
 func _on_Area_area_entered(area):
-	$AudioStreamPlayer2D.play()
+	$AudioStreamPlayer.play()
 	knock_back = 50
 	hp -= 1
 	if hp <= 0 or area.collision_layer == 1:

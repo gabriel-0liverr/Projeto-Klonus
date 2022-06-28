@@ -11,13 +11,15 @@ config_version=4
 [application]
 
 config/name="Klonus"
-run/main_scene="res://Scenes/Fase 1/Start_Menu.tscn"
+run/main_scene="res://Scenes/Fase 1/Login.tscn"
 config/icon="res://IconMin.png"
 config/windows_native_icon="res://IconMin.ico"
 
 [autoload]
 
 Score="*res://Scripts/Fase 1/Score.gd"
+UserData="*res://Scripts/Fase 1/UserData.gd"
+PlayerData="*res://Scripts/Fase 1/PlayerData.gd"
 
 [display]
 
@@ -27,6 +29,10 @@ window/size/test_width=800
 window/size/test_height=450
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"
+
+[global]
+
+internet=true
 
 [input]
 

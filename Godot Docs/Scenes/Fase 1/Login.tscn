@@ -1,0 +1,290 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://Fonts/Pixel Powerline.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Scripts/Fase 1/Username.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Fase 1/HTTPRequest.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/Fase 1/Password.gd" type="Script" id=4]
+[ext_resource path="res://Assets/Fase 1/Menu_Back.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Buttons/LoginLight.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Buttons/LoginDark.png" type="Texture" id=7]
+[ext_resource path="res://music/login.mp3" type="AudioStream" id=8]
+[ext_resource path="res://Assets/Buttons/SignDark.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Buttons/OffLight.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Buttons/SignLight.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Buttons/OffDark.png" type="Texture" id=12]
+
+[sub_resource type="GDScript" id=7]
+script/source = "extends Control
+
+
+func _ready():
+	pass 
+
+func _process(delta):
+	if $NinePatchRect/VBoxContainer/Offline.is_pressed():
+		get_tree().change_scene(\"res://Scenes/Fase 1/Start_Menu.tscn\")
+	
+	elif $NinePatchRect/VBoxContainer/Login.is_pressed():
+		$Authenticator/HTTPRequest/test.text = \"1\"
+		$NinePatchRect/VBoxContainer/Username.on_Login_pressed()
+		$NinePatchRect/VBoxContainer/Password.on_Login_pressed()
+		$Authenticator/HTTPRequest.on_Login_pressed()
+	
+	elif $NinePatchRect/VBoxContainer/Sign.is_pressed():
+		get_tree().change_scene(\"res://Scenes/Fase 1/Register.tscn\")
+"
+
+[sub_resource type="DynamicFont" id=4]
+size = 40
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 35
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 40
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 35
+font_data = ExtResource( 1 )
+
+[sub_resource type="Animation" id=8]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("NinePatchRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("NinePatchRect/VBoxContainer:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("NinePatchRect/VBoxContainer/Login:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("NinePatchRect/VBoxContainer/Sign:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("NinePatchRect/VBoxContainer/Offline:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "intro"
+length = 12.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("NinePatchRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("NinePatchRect/VBoxContainer:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 4, 7 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("NinePatchRect/VBoxContainer/Login:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 6, 9 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("NinePatchRect/VBoxContainer/Sign:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 9, 12 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("NinePatchRect/VBoxContainer/Offline:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 9, 12 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = SubResource( 7 )
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 5 )
+region_rect = Rect2( 0, 0, 640, 360 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 450.0
+margin_top = 194.0
+margin_right = -450.0
+margin_bottom = -206.0
+
+[node name="UsernameTittle" type="Label" parent="NinePatchRect/VBoxContainer"]
+margin_right = 380.0
+margin_bottom = 48.0
+custom_fonts/font = SubResource( 4 )
+text = "Username"
+uppercase = true
+
+[node name="Username" type="LineEdit" parent="NinePatchRect/VBoxContainer"]
+margin_top = 52.0
+margin_right = 380.0
+margin_bottom = 104.0
+rect_min_size = Vector2( 0, 25 )
+custom_fonts/font = SubResource( 5 )
+script = ExtResource( 2 )
+
+[node name="MarginContainer2" type="MarginContainer" parent="NinePatchRect/VBoxContainer"]
+margin_top = 108.0
+margin_right = 380.0
+margin_bottom = 118.0
+rect_min_size = Vector2( 0, 10 )
+
+[node name="PasswordTittle" type="Label" parent="NinePatchRect/VBoxContainer"]
+margin_top = 122.0
+margin_right = 380.0
+margin_bottom = 170.0
+custom_fonts/font = SubResource( 2 )
+text = "Password"
+uppercase = true
+
+[node name="Password" type="LineEdit" parent="NinePatchRect/VBoxContainer"]
+margin_top = 174.0
+margin_right = 380.0
+margin_bottom = 226.0
+rect_min_size = Vector2( 0, 25 )
+custom_fonts/font = SubResource( 6 )
+script = ExtResource( 4 )
+
+[node name="MarginContainer3" type="MarginContainer" parent="NinePatchRect/VBoxContainer"]
+margin_top = 230.0
+margin_right = 380.0
+margin_bottom = 240.0
+rect_min_size = Vector2( 0, 10 )
+
+[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect/VBoxContainer"]
+margin_top = 244.0
+margin_right = 380.0
+margin_bottom = 289.0
+rect_min_size = Vector2( 0, 45 )
+
+[node name="Login" type="TouchScreenButton" parent="NinePatchRect/VBoxContainer"]
+position = Vector2( 81, 252 )
+scale = Vector2( 0.28, 0.28 )
+normal = ExtResource( 6 )
+pressed = ExtResource( 7 )
+
+[node name="Sign" type="TouchScreenButton" parent="NinePatchRect/VBoxContainer"]
+position = Vector2( -322, 318 )
+scale = Vector2( 0.25, 0.25 )
+normal = ExtResource( 11 )
+pressed = ExtResource( 9 )
+
+[node name="Offline" type="TouchScreenButton" parent="NinePatchRect/VBoxContainer"]
+position = Vector2( 478, 318 )
+scale = Vector2( 0.25, 0.25 )
+normal = ExtResource( 10 )
+pressed = ExtResource( 12 )
+
+[node name="Authenticator" type="Node" parent="."]
+
+[node name="HTTPRequest" type="HTTPRequest" parent="Authenticator"]
+script = ExtResource( 3 )
+
+[node name="test" type="Label" parent="Authenticator/HTTPRequest"]
+margin_left = 50.0
+margin_top = 40.0
+margin_right = 83.0
+margin_bottom = 54.0
+rect_scale = Vector2( 4, 4 )
+text = "status"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "intro"
+playback_speed = 2.0
+anims/RESET = SubResource( 8 )
+anims/intro = SubResource( 9 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+pitch_scale = 1.12
+autoplay = true
+
+[connection signal="request_completed" from="Authenticator/HTTPRequest" to="Authenticator/HTTPRequest" method="_on_HTTPRequest_request_completed"]

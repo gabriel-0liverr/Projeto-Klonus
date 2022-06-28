@@ -20,11 +20,13 @@ func _process(delta):
 func asteroid_destroied(ast):
 	var pontos = (3 - ast.chosen) * 10
 	score += pontos * bonus
+	PlayerData.scoreCurrent = score
 	print('ast ' + str(pontos * bonus))
 	$score.text = str(score)
 
 func inimigo_destroied(nav):
 	score += 30 * bonus
+	PlayerData.scoreCurrent = score
 	print(str(30 * bonus))
 	$score.text = str(score)
 

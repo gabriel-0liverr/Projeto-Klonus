@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=2]
+[gd_scene load_steps=63 format=2]
 
 [ext_resource path="res://Scenes/Fase 1/Escudo.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Fase 1/AsteroideS.gd" type="Script" id=2]
@@ -38,6 +38,15 @@
 [ext_resource path="res://music/UpBeat-Gameplay.mp3" type="AudioStream" id=36]
 [ext_resource path="res://Scripts/Fase 1/Bonus.gd" type="Script" id=37]
 [ext_resource path="res://Sound FX/power-up.wav" type="AudioStream" id=38]
+[ext_resource path="res://Assets/Buttons/SettingLight.png" type="Texture" id=39]
+[ext_resource path="res://Assets/Buttons/SettingDark.png" type="Texture" id=40]
+[ext_resource path="res://Assets/Buttons/PlayDark.png" type="Texture" id=41]
+[ext_resource path="res://Assets/Buttons/PlayLight.png" type="Texture" id=42]
+[ext_resource path="res://Assets/Buttons/SairLight.png" type="Texture" id=43]
+[ext_resource path="res://Assets/Buttons/SairDark.png" type="Texture" id=44]
+[ext_resource path="res://Assets/Buttons/PauseDark.png" type="Texture" id=45]
+[ext_resource path="res://Assets/Buttons/PauseLight.png" type="Texture" id=46]
+[ext_resource path="res://Scenes/Fase 1/Settings.tscn" type="PackedScene" id=47]
 
 [sub_resource type="Shader" id=5]
 code = "// NOTE: Shader automatically converted from Godot Engine 3.4.3.stable's CanvasItemMaterial.
@@ -391,6 +400,10 @@ font_data = ExtResource( 23 )
 size = 45
 font_data = ExtResource( 23 )
 
+[sub_resource type="DynamicFont" id=15]
+size = 62
+font_data = ExtResource( 23 )
+
 [node name="Game" type="Node2D"]
 script = ExtResource( 24 )
 
@@ -593,6 +606,12 @@ pressed = ExtResource( 22 )
 passby_press = true
 action = "ui_down_left"
 
+[node name="Pause" type="TouchScreenButton" parent="Controls"]
+position = Vector2( 60, 40 )
+scale = Vector2( 2, 2 )
+normal = ExtResource( 46 )
+pressed = ExtResource( 45 )
+
 [node name="HUD" type="CanvasLayer" parent="." groups=["hud"]]
 script = ExtResource( 17 )
 
@@ -630,10 +649,9 @@ wait_time = 10.0
 one_shot = true
 
 [node name="Label" type="Label" parent="HUD/Bonus"]
-margin_left = 63.0
-margin_top = -1.0
-margin_right = 835.0
-margin_bottom = 160.0
+margin_left = 180.0
+margin_right = 952.0
+margin_bottom = 161.0
 custom_colors/font_color = Color( 0, 1, 0.25098, 1 )
 custom_fonts/font = SubResource( 14 )
 valign = 1
@@ -649,6 +667,51 @@ stream = ExtResource( 36 )
 volume_db = 1.5
 pitch_scale = 1.05
 autoplay = true
+bus = "Musica"
+
+[node name="Pause" type="Popup" parent="."]
+pause_mode = 2
+visible = true
+margin_right = 1280.0
+margin_bottom = 720.0
+
+[node name="ColorRect" type="ColorRect" parent="Pause"]
+margin_right = 1280.0
+margin_bottom = 720.0
+color = Color( 0, 0, 0, 0.470588 )
+
+[node name="Label" type="Label" parent="Pause"]
+margin_left = 519.0
+margin_top = 160.0
+margin_right = 765.0
+margin_bottom = 234.0
+custom_fonts/font = SubResource( 15 )
+text = "PAUSED"
+
+[node name="Voltar" type="TouchScreenButton" parent="Pause"]
+position = Vector2( 500, 260 )
+scale = Vector2( 2.5, 2.5 )
+normal = ExtResource( 42 )
+pressed = ExtResource( 41 )
+
+[node name="Config" type="TouchScreenButton" parent="Pause"]
+position = Vector2( 660, 260 )
+scale = Vector2( 2.5, 2.5 )
+normal = ExtResource( 39 )
+pressed = ExtResource( 40 )
+
+[node name="Menu" type="TouchScreenButton" parent="Pause"]
+position = Vector2( 496, 399 )
+normal = ExtResource( 43 )
+pressed = ExtResource( 44 )
+
+[node name="Settings" parent="." instance=ExtResource( 47 )]
+pause_mode = 2
+visible = false
+margin_left = 640.0
+margin_top = 360.0
+margin_right = 640.0
+margin_bottom = 360.0
 
 [connection signal="area_entered" from="Player/Area" to="Player" method="_on_Area_area_entered"]
 [connection signal="area_entered" from="Player/Dead_area" to="Player" method="_on_Dead_area_area_entered"]
@@ -656,7 +719,11 @@ autoplay = true
 [connection signal="timeout" from="Player/TimerTiro" to="Player" method="_on_TimerTiro_timeout"]
 [connection signal="timeout" from="Inimigos/Asteroides/Spawn_Timer" to="Inimigos/Asteroides" method="_on_Spawn_Timer_timeout"]
 [connection signal="timeout" from="Inimigos/NaveS/Spawn_Timer" to="Inimigos/NaveS" method="_on_Spawn_Timer_timeout"]
+[connection signal="pressed" from="Controls/Pause" to="." method="_on_Pause_pressed"]
 [connection signal="timeout" from="HUD/Contagem/Timer" to="HUD/Contagem" method="_on_Timer_timeout"]
-[connection signal="timeout" from="HUD/Bonus/TimerBonus" to="HUD/Bonus" method="_on_Timer_timeout"]
+[connection signal="released" from="Pause/Voltar" to="." method="_on_Voltar_released"]
+[connection signal="released" from="Pause/Config" to="." method="_on_Config_released"]
+[connection signal="about_to_show" from="Settings" to="Settings" method="_on_Settings_about_to_show"]
+[connection signal="popup_hide" from="Settings" to="." method="_on_Settings_popup_hide"]
 
 [editable path="Player/Escudo"]

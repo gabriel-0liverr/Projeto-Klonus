@@ -85,3 +85,4 @@ process_material = SubResource( 3 )
 stream = ExtResource( 1 )
 volume_db = 10.0
 autoplay = true
+bus = "SFX"

@@ -255,5 +255,6 @@ autoplay = true
 stream = ExtResource( 10 )
 pitch_scale = 1.2
 autoplay = true
+bus = "Musica"
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

@@ -16,4 +16,6 @@ func _on_Timer_timeout():
 		$Label.text = str("Vai!")
 		get_tree().paused = false
 	elif tempo < 0:
-		queue_free()
+		$Label.text = ""
+		$Timer.stop()
+		tempo = 3

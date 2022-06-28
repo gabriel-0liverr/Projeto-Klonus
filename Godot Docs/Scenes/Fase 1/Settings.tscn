@@ -1,0 +1,142 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Fonts/Pixel Powerline.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Assets/Buttons/YesDark.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Buttons/YesLight.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Buttons/NoLight.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Buttons/NoDark.png" type="Texture" id=5]
+[ext_resource path="res://Scripts/Fase 1/Settings.gd" type="Script" id=6]
+
+[sub_resource type="Theme" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 35
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 35
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 35
+font_data = ExtResource( 1 )
+
+[node name="Popup" type="Popup"]
+visible = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 6 )
+
+[node name="Container" type="Container" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -350.0
+margin_top = -225.0
+margin_right = 350.0
+margin_bottom = 225.0
+
+[node name="Back" type="ColorRect" parent="Container"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -290.0
+margin_top = -135.0
+margin_right = 290.0
+margin_bottom = 135.0
+color = Color( 0, 0, 0, 0.784314 )
+
+[node name="Box" type="ColorRect" parent="Container"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -400.0
+margin_top = -300.0
+margin_right = 400.0
+margin_bottom = 300.0
+theme = SubResource( 4 )
+color = Color( 0.0862745, 0.0862745, 0.0862745, 1 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Container"]
+anchor_left = 0.00285714
+anchor_top = -0.00888889
+anchor_right = 0.388571
+anchor_bottom = 0.337778
+margin_left = -2.0
+margin_top = 4.0
+margin_right = 38.0
+margin_bottom = 44.0
+rect_scale = Vector2( 2.3, 2.3 )
+custom_constants/separation = 35
+
+[node name="Sfx" type="HBoxContainer" parent="Container/VBoxContainer"]
+margin_right = 310.0
+margin_bottom = 42.0
+
+[node name="SFX" type="Label" parent="Container/VBoxContainer/Sfx"]
+margin_right = 230.0
+margin_bottom = 42.0
+rect_min_size = Vector2( 230, 10 )
+custom_fonts/font = SubResource( 1 )
+text = "SFX"
+
+[node name="CheckSfx" type="CheckButton" parent="Container/VBoxContainer/Sfx"]
+margin_left = 234.0
+margin_right = 310.0
+margin_bottom = 42.0
+pressed = true
+
+[node name="Musica" type="HBoxContainer" parent="Container/VBoxContainer"]
+margin_top = 77.0
+margin_right = 310.0
+margin_bottom = 119.0
+
+[node name="Musica" type="Label" parent="Container/VBoxContainer/Musica"]
+margin_right = 230.0
+margin_bottom = 42.0
+rect_min_size = Vector2( 230, 0 )
+custom_fonts/font = SubResource( 2 )
+text = "MUSICA"
+
+[node name="CheckMusica" type="CheckButton" parent="Container/VBoxContainer/Musica"]
+margin_left = 234.0
+margin_right = 310.0
+margin_bottom = 42.0
+pressed = true
+
+[node name="Brilho" type="HBoxContainer" parent="Container/VBoxContainer"]
+margin_top = 154.0
+margin_right = 310.0
+margin_bottom = 196.0
+
+[node name="Brilho" type="Label" parent="Container/VBoxContainer/Brilho"]
+margin_right = 150.0
+margin_bottom = 42.0
+rect_min_size = Vector2( 150, 0 )
+custom_fonts/font = SubResource( 3 )
+text = "BRILHO"
+
+[node name="HSlider" type="HSlider" parent="Container/VBoxContainer/Brilho"]
+margin_left = 154.0
+margin_right = 299.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 145, 40 )
+max_value = 4.0
+value = 2.0
+tick_count = 5
+
+[node name="Yes" type="TouchScreenButton" parent="Container"]
+position = Vector2( 750, -47 )
+scale = Vector2( 2, 2 )
+normal = ExtResource( 3 )
+pressed = ExtResource( 2 )
+
+[node name="No" type="TouchScreenButton" parent="Container"]
+position = Vector2( -146, -47 )
+scale = Vector2( 2, 2 )
+normal = ExtResource( 4 )
+pressed = ExtResource( 5 )
+
+[connection signal="released" from="Container/Yes" to="." method="_on_Yes_released"]
+[connection signal="released" from="Container/No" to="." method="_on_No_released"]
