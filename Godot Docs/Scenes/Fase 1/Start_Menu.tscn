@@ -304,6 +304,7 @@ one_shot = true
 
 [node name="anim" type="AnimationPlayer" parent="."]
 autoplay = "Reveal"
+playback_speed = 2.0
 anims/RESET = SubResource( 2 )
 anims/Reveal = SubResource( 3 )
 
@@ -359,5 +360,4 @@ margin_bottom = 360.0
 [connection signal="released" from="Ranking" to="." method="_on_Ranking_released"]
 [connection signal="released" from="Settings" to="." method="_on_Settings_released"]
 [connection signal="about_to_show" from="Popup" to="." method="_on_Popup_about_to_show"]
-[connection signal="about_to_show" from="Popup" to="Popup" method="_on_Popup_about_to_show"]
 [connection signal="popup_hide" from="Popup" to="." method="_on_Popup_popup_hide"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=2]
+[gd_scene load_steps=64 format=2]
 
 [ext_resource path="res://Scenes/Fase 1/Escudo.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Fase 1/AsteroideS.gd" type="Script" id=2]
@@ -47,6 +47,7 @@
 [ext_resource path="res://Assets/Buttons/PauseDark.png" type="Texture" id=45]
 [ext_resource path="res://Assets/Buttons/PauseLight.png" type="Texture" id=46]
 [ext_resource path="res://Scenes/Fase 1/Settings.tscn" type="PackedScene" id=47]
+[ext_resource path="res://Scripts/Fase 1/Pause.gd" type="Script" id=48]
 
 [sub_resource type="Shader" id=5]
 code = "// NOTE: Shader automatically converted from Godot Engine 3.4.3.stable's CanvasItemMaterial.
@@ -405,6 +406,7 @@ size = 62
 font_data = ExtResource( 23 )
 
 [node name="Game" type="Node2D"]
+pause_mode = 1
 script = ExtResource( 24 )
 
 [node name="Background-back" type="Sprite" parent="."]
@@ -674,6 +676,7 @@ pause_mode = 2
 visible = true
 margin_right = 1280.0
 margin_bottom = 720.0
+script = ExtResource( 48 )
 
 [node name="ColorRect" type="ColorRect" parent="Pause"]
 margin_right = 1280.0
@@ -705,9 +708,8 @@ position = Vector2( 496, 399 )
 normal = ExtResource( 43 )
 pressed = ExtResource( 44 )
 
-[node name="Settings" parent="." instance=ExtResource( 47 )]
+[node name="Popup" parent="." instance=ExtResource( 47 )]
 pause_mode = 2
-visible = false
 margin_left = 640.0
 margin_top = 360.0
 margin_right = 640.0
@@ -723,7 +725,7 @@ margin_bottom = 360.0
 [connection signal="timeout" from="HUD/Contagem/Timer" to="HUD/Contagem" method="_on_Timer_timeout"]
 [connection signal="released" from="Pause/Voltar" to="." method="_on_Voltar_released"]
 [connection signal="released" from="Pause/Config" to="." method="_on_Config_released"]
-[connection signal="about_to_show" from="Settings" to="Settings" method="_on_Settings_about_to_show"]
-[connection signal="popup_hide" from="Settings" to="." method="_on_Settings_popup_hide"]
+[connection signal="released" from="Pause/Menu" to="Pause" method="_on_Menu_released"]
+[connection signal="popup_hide" from="Popup" to="." method="_on_Popup_popup_hide"]
 
 [editable path="Player/Escudo"]

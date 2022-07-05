@@ -8,7 +8,7 @@ var music_reset
 func _ready():
 	pass
 
-func _on_Settings_about_to_show():
+func _on_Popup_about_to_show():
 	if $Container/VBoxContainer/Sfx/CheckSfx.pressed:
 		sfx_reset = true
 	else:
